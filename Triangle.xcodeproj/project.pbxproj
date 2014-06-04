@@ -13,10 +13,10 @@
 		551D0686193E46B000164075 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 551D0684193E46B000164075 /* MainMenu.xib */; };
 		551D0692193E46B000164075 /* TriangleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551D0691193E46B000164075 /* TriangleTests.swift */; };
 		551D069C193E492B00164075 /* TriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551D069B193E492B00164075 /* TriangleView.swift */; };
-		557B2CAA193ED93B00C3E465 /* triangle.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 557B2CA9193ED93B00C3E465 /* triangle.vsh */; };
-		557B2CAC193ED97600C3E465 /* triangle.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 557B2CAB193ED97600C3E465 /* triangle.fsh */; };
-		55F93D2A193FAA1500823D26 /* triangle120.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 55F93D29193FAA1500823D26 /* triangle120.vsh */; };
-		55F93D2C193FAA2400823D26 /* triangle120.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 55F93D2B193FAA2400823D26 /* triangle120.fsh */; };
+		557B2CAA193ED93B00C3E465 /* triangle.vert in Resources */ = {isa = PBXBuildFile; fileRef = 557B2CA9193ED93B00C3E465 /* triangle.vert */; };
+		557B2CAC193ED97600C3E465 /* triangle.frag in Resources */ = {isa = PBXBuildFile; fileRef = 557B2CAB193ED97600C3E465 /* triangle.frag */; };
+		55F93D2A193FAA1500823D26 /* triangle120.vert in Resources */ = {isa = PBXBuildFile; fileRef = 55F93D29193FAA1500823D26 /* triangle120.vert */; };
+		55F93D2C193FAA2400823D26 /* triangle120.frag in Resources */ = {isa = PBXBuildFile; fileRef = 55F93D2B193FAA2400823D26 /* triangle120.frag */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,10 +41,10 @@
 		551D0691193E46B000164075 /* TriangleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleTests.swift; sourceTree = "<group>"; };
 		551D069B193E492B00164075 /* TriangleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriangleView.swift; sourceTree = "<group>"; };
 		554510CF193FA0C0002F1A6C /* triangle.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = triangle.playground; sourceTree = "<group>"; };
-		557B2CA9193ED93B00C3E465 /* triangle.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = triangle.vsh; sourceTree = "<group>"; };
-		557B2CAB193ED97600C3E465 /* triangle.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = triangle.fsh; sourceTree = "<group>"; };
-		55F93D29193FAA1500823D26 /* triangle120.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = triangle120.vsh; sourceTree = "<group>"; };
-		55F93D2B193FAA2400823D26 /* triangle120.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = triangle120.fsh; sourceTree = "<group>"; };
+		557B2CA9193ED93B00C3E465 /* triangle.vert */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = triangle.vert; sourceTree = "<group>"; };
+		557B2CAB193ED97600C3E465 /* triangle.frag */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = triangle.frag; sourceTree = "<group>"; };
+		55F93D29193FAA1500823D26 /* triangle120.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = triangle120.vert; sourceTree = "<group>"; };
+		55F93D2B193FAA2400823D26 /* triangle120.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = triangle120.frag; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,10 +92,10 @@
 				551D0682193E46B000164075 /* Images.xcassets */,
 				551D0684193E46B000164075 /* MainMenu.xib */,
 				551D067C193E46B000164075 /* Supporting Files */,
-				557B2CA9193ED93B00C3E465 /* triangle.vsh */,
-				557B2CAB193ED97600C3E465 /* triangle.fsh */,
-				55F93D29193FAA1500823D26 /* triangle120.vsh */,
-				55F93D2B193FAA2400823D26 /* triangle120.fsh */,
+				557B2CA9193ED93B00C3E465 /* triangle.vert */,
+				557B2CAB193ED97600C3E465 /* triangle.frag */,
+				55F93D29193FAA1500823D26 /* triangle120.vert */,
+				55F93D2B193FAA2400823D26 /* triangle120.frag */,
 			);
 			path = Triangle;
 			sourceTree = "<group>";
@@ -206,10 +206,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				557B2CAC193ED97600C3E465 /* triangle.fsh in Resources */,
-				557B2CAA193ED93B00C3E465 /* triangle.vsh in Resources */,
-				55F93D2C193FAA2400823D26 /* triangle120.fsh in Resources */,
-				55F93D2A193FAA1500823D26 /* triangle120.vsh in Resources */,
+				557B2CAC193ED97600C3E465 /* triangle.frag in Resources */,
+				557B2CAA193ED93B00C3E465 /* triangle.vert in Resources */,
+				55F93D2C193FAA2400823D26 /* triangle120.frag in Resources */,
+				55F93D2A193FAA1500823D26 /* triangle120.vert in Resources */,
 				551D0683193E46B000164075 /* Images.xcassets in Resources */,
 				551D0686193E46B000164075 /* MainMenu.xib in Resources */,
 			);

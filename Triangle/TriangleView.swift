@@ -47,8 +47,8 @@ class TriangleView: NSOpenGLView {
         openGLContext.makeCurrentContext()
 		checkError()
 
-        var fragmentShaderSource = String.stringWithContentsOfFile(NSBundle.mainBundle().pathForResource("triangle120", ofType: "fsh"), encoding: NSUTF8StringEncoding, error: nil)!
-        var vertexShaderSource = String.stringWithContentsOfFile(NSBundle.mainBundle().pathForResource("triangle120", ofType: "vsh"), encoding: NSUTF8StringEncoding, error: nil)!
+        var fragmentShaderSource = String.stringWithContentsOfFile(NSBundle.mainBundle().pathForResource("triangle120", ofType: "frag"), encoding: NSUTF8StringEncoding, error: nil)!
+        var vertexShaderSource = String.stringWithContentsOfFile(NSBundle.mainBundle().pathForResource("triangle120", ofType: "vert"), encoding: NSUTF8StringEncoding, error: nil)!
 
 		fragmentShader = createShader(fragmentShaderSource, type: GLenum(GL_FRAGMENT_SHADER))
 		checkError()
