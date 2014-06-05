@@ -43,6 +43,7 @@
 		554510CF193FA0C0002F1A6C /* triangle.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = triangle.playground; sourceTree = "<group>"; };
 		557B2CA9193ED93B00C3E465 /* triangle.vert */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = triangle.vert; sourceTree = "<group>"; };
 		557B2CAB193ED97600C3E465 /* triangle.frag */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = triangle.frag; sourceTree = "<group>"; };
+		55990FDB1940131F0020278C /* test.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = test.playground; sourceTree = "<group>"; };
 		55F93D29193FAA1500823D26 /* triangle120.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = triangle120.vert; sourceTree = "<group>"; };
 		55F93D2B193FAA2400823D26 /* triangle120.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = triangle120.frag; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				554510CF193FA0C0002F1A6C /* triangle.playground */,
+				55990FDB1940131F0020278C /* test.playground */,
 				551D0680193E46B000164075 /* AppDelegate.swift */,
 				551D069B193E492B00164075 /* TriangleView.swift */,
 				551D0682193E46B000164075 /* Images.xcassets */,
