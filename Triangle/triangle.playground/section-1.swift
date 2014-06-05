@@ -49,3 +49,30 @@ class TriangleView: NSOpenGLView {
 
 let view = TriangleView(frame: frame)
 XCPShowView("Triangle View", view)
+
+var type = GLenum(GL_VERTEX_SHADER)
+var shaderSource = "<my cool shader>"
+var shader = glCreateShader(type)
+
+var shaderSourceCString: CString = (shaderSource as NSString).UTF8String
+glShaderSource(shader, 1, &shaderSourceCString, nil)
+glCompileShader(shader)
+var a = Int[](count:10, repeatedValue: 1)
+
+var value: GLint = 0
+glGetShaderiv(shader, GLenum(GL_COMPILE_STATUS), &value)
+if (value == GL_FALSE) {
+	glGetShaderiv(shader, GLenum(GL_INFO_LOG_LENGTH), &value)
+	var infoLog: GLchar[] = GLchar[](count: Int(value), repeatedValue: 0)
+	var infoLogLength: GLsizei = 0
+	glGetShaderInfoLog(shader, value, &infoLogLength, &infoLog)
+	var s: String = NSString.stringWithCString(&infoLog)
+	println(s)
+	assert(false, "shader compilation failed")
+}
+
+glGetShaderiv(shader, GLenum(GL_INFO_LOG_LENGTH), &value)
+var infoLog: GLchar[] = GLchar[](count: Int(value), repeatedValue: 0)
+var infoLogLength: GLsizei = 0
+glGetShaderInfoLog(shader, value, &infoLogLength, &infoLog)
+var s: String = NSString.stringWithCString(&infoLog)

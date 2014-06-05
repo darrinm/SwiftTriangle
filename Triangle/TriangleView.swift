@@ -63,7 +63,7 @@ class TriangleView: NSOpenGLView {
 		glLinkProgram(program)
 		checkError()
 
-		var status: GLint = 99
+		var status: GLint = 9999
 		glGetProgramiv(program, GLenum(GL_LINK_STATUS), &status)
 		if (status == GL_FALSE) {
 			var value: GLint = 0
@@ -71,7 +71,7 @@ class TriangleView: NSOpenGLView {
 			var infoLog: GLchar[] = GLchar[](count: Int(value), repeatedValue: 0)
 			var infoLogLength: GLsizei = value
 			glGetProgramInfoLog(program, value, &infoLogLength, &infoLog)
-			println(infoLog)
+			println(NSString(bytes: infoLog, length: Int(infoLogLength), encoding: NSASCIIStringEncoding))
 			assert(false, "program link failed")
 		}
 		checkError()
@@ -82,15 +82,15 @@ class TriangleView: NSOpenGLView {
 		let vertexBufferSize = 36
 		
 		vertexPositionAttributeLocation = GLuint(glGetAttribLocation(program, "vertexPosition_modelspace"))
-		//glBindAttribLocation(program, vertexPositionAttributeLocation, "vertexPosition_modelspace")
-		//glBindAttribLocation(program, 0, "Vertex.Position")
 		checkError()
 		
-		let vertex1 = Vertex3D(x: 0.0, y: 1.0, z: -3.0)
-		let vertex2 = Vertex3D(x: 1.0, y: 0.0, z: -3.0)
-		let vertex3 = Vertex3D(x: -1.0, y: 0.0, z: -3.0)
+		// TODO: better initialization
+		let vertex1 = Vertex3D(x: 0.0, y: 1.0, z: 0.0)
+		let vertex2 = Vertex3D(x: 1.0, y: -1.0, z: 0.0)
+		let vertex3 = Vertex3D(x: -1.0, y: -1.0, z: 0.0)
 		triangle = Triangle3D(v1: vertex1, v2: vertex2, v3: vertex3)
 
+		/*
 		var bufferHandles: GLuint[] = [ 0 ]
 		glGenBuffers(1, &bufferHandles)
 		vertexBufferHandle = bufferHandles[0]
@@ -99,6 +99,7 @@ class TriangleView: NSOpenGLView {
 		checkError()
 		glBufferData(GLenum(GL_ARRAY_BUFFER), vertexBufferSize, &triangle, GLenum(GL_STATIC_DRAW))
 		checkError()
+*/
 
 		/*
 		var vertexArrayHandles: GLuint[] = [ 0 ]
@@ -130,6 +131,7 @@ class TriangleView: NSOpenGLView {
 
 		glUseProgram(program)
 		checkError()
+		/*
 		glEnableVertexAttribArray(0)
 		checkError()
 		glBindBuffer(GLenum(GL_ARRAY_BUFFER), vertexBufferHandle)
@@ -137,6 +139,10 @@ class TriangleView: NSOpenGLView {
 		var vertexBufferOffset: GLuint = 0
 		glVertexAttribPointer(vertexPositionAttributeLocation, 3, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, &vertexBufferOffset)
 		checkError()
+		*/
+		glVertexAttribPointer(vertexPositionAttributeLocation, 3, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, &triangle)
+		checkError()
+		glEnableVertexAttribArray(vertexPositionAttributeLocation)
 
 //		glUniformMatrix4fv(mpvUniformLocation, 1, 0, &matrix)
 
@@ -154,13 +160,10 @@ class TriangleView: NSOpenGLView {
 		checkError()
 
 		var shaderSourceCString: CString = (shaderSource as NSString).UTF8String
-//		var lengthNumber: NSNumber = (shaderSource as NSString).lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
-//		var shaderSourceCStringLength: GLint = lengthNumber.intValue
 		glShaderSource(shader, 1, &shaderSourceCString, nil) // &shaderSourceCStringLength)
 		checkError()
 		glCompileShader(shader)
 		checkError()
-		var a = Int[](count:10, repeatedValue: 1)
 		
 		var value: GLint = 0
 		glGetShaderiv(shader, GLenum(GL_COMPILE_STATUS), &value)
@@ -169,7 +172,7 @@ class TriangleView: NSOpenGLView {
 			var infoLog: GLchar[] = GLchar[](count: Int(value), repeatedValue: 0)
 			var infoLogLength: GLsizei = 0
 			glGetShaderInfoLog(shader, value, &infoLogLength, &infoLog)
-			println(infoLog)
+			println(NSString(bytes: infoLog, length: Int(infoLogLength), encoding: NSASCIIStringEncoding))
 			assert(false, "shader compilation failed")
 		}
 
