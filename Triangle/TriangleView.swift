@@ -43,6 +43,11 @@ class TriangleView: NSOpenGLView {
 		initCommon()
     }
 
+	init(frame frameRect: NSRect, pixelFormat format: NSOpenGLPixelFormat!) {
+		super.init(frame: frameRect, pixelFormat: format)
+		initCommon()
+	}
+
 	func initCommon() {
         openGLContext.makeCurrentContext()
 		checkError()
