@@ -1,23 +1,18 @@
-var randomNumbers = [42, 12, 88, 62, 63, 56, 1, 77, 88, 97, 97, 20, 45, 91, 62, 2, 15, 31, 59, 5]
+import GLKit
+import XCPlayground
 
-func partition(v: Int[], left: Int, right: Int) -> Int {
-	var i = left
-	for j in (left + 1)..(right + 1) {
-		if v[j] < v[left] {
-			i += 1
-			(v[i], v[j]) = (v[j], v[i])
-		}
-	}
-	(v[i], v[left]) = (v[left], v[i])
-	return i
-}
-
-func quicksort(v: Int[], left: Int, right: Int) {
-	if right > left {
-		let pivotIndex = partition(v, left, right)
-		quicksort(v, left, pivotIndex - 1)
-		quicksort(v, pivotIndex + 1, right)
+class TriangleView: NSOpenGLView {
+	override func drawRect(dirtyRect: NSRect) {
+		println("drawRect")
+		super.drawRect(dirtyRect)
+		self.openGLContext.makeCurrentContext()
+		
+		glClearColor(0.0, 0.0, 0.5, 1.0)
+		glClear((GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT).asUnsigned())
+		glFlush()
 	}
 }
 
-quicksort(randomNumbers, 0, randomNumbers.count-1)
+let frame = CGRect(x: 0, y: 0, width: 400, height: 300)
+let view = TriangleView(frame: frame)
+XCPShowView("Triangle View", view)

@@ -22,24 +22,29 @@ class TriangleView: NSOpenGLView {
 	var vertexArrayHandle: GLuint = 0
 	var mpvUniformLocation: GLint = 0
 	var vertexPositionAttributeLocation: GLuint = 0
+	var initialized = false
 
 	init(coder: NSCoder!) {
 		super.init(coder: coder)
+		println("init coder")
 		initCommon()
 	}
 
 	init(frame: NSRect) {
 		super.init(frame: frame)
-		initCommon()
+		println("init frame")
+//		initCommon()
 	}
 
 	init(frame frameRect: NSRect, pixelFormat format: NSOpenGLPixelFormat!) {
 		super.init(frame: frameRect, pixelFormat: format)
+		println("init frame pixelFormat")
 		initCommon()
 	}
 
 	func initCommon() {
 		println("initCommon")
+
 		openGLContext.makeCurrentContext()
 		checkError()
 
@@ -110,24 +115,29 @@ class TriangleView: NSOpenGLView {
 		mpvUniformLocation = glGetUniformLocation(program, "MVP")
 		checkError()
 		*/
+		
+		initialized = true
 	}
 
 	override func drawRect(dirtyRect: NSRect) {
 		super.drawRect(dirtyRect)
-		/*
+		if !initialized {
+			return
+		}
+		println("drawRect")
 
 		openGLContext.makeCurrentContext()
-		checkError()
+//		checkError()
 
 		// TODO: addvertexbinding?
 
 		glClearColor(0.0, 0.0, 0.5, 1.0)
-		checkError()
+//		checkError()
 		glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
-		checkError()
+//		checkError()
 
 		glUseProgram(program)
-		checkError()
+//		checkError()
 		/*
 		glEnableVertexAttribArray(0)
 		checkError()
@@ -138,43 +148,42 @@ class TriangleView: NSOpenGLView {
 		checkError()
 		*/
 		glVertexAttribPointer(vertexPositionAttributeLocation, 3, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, &triangle)
-		checkError()
+//		checkError()
 		glEnableVertexAttribArray(vertexPositionAttributeLocation)
 
 		//		glUniformMatrix4fv(mpvUniformLocation, 1, 0, &matrix)
 
 		glDrawArrays(GLenum(GL_TRIANGLES), 0, 3)
-		checkError()
+//		checkError()
 
 		//		glDisableVertexAttribArray(0)
-
+		
 		glFlush()
-		checkError()
-*/
+//		checkError()
 	}
 
 	func createShader(shaderSource: String, type: GLenum) -> GLuint {
 		println("createShader")
 		var shader = glCreateShader(type)
 		checkError()
-		println("createShade2r")
 
-		var shaderSourceCString: CString = (shaderSource as NSString).UTF8String
-		glShaderSource(shader, 1, &shaderSourceCString, nil) // &shaderSourceCStringLength)
-		checkError()
-		println("createShade3r")
-		glCompileShader(shader)
-		checkError()
-
-		var value: GLint = 0
-		glGetShaderiv(shader, GLenum(GL_COMPILE_STATUS), &value)
-		if (value == GL_FALSE) {
-			glGetShaderiv(shader, GLenum(GL_INFO_LOG_LENGTH), &value)
-			var infoLog: GLchar[] = GLchar[](count: Int(value), repeatedValue: 0)
-			var infoLogLength: GLsizei = 0
-			glGetShaderInfoLog(shader, value, &infoLogLength, &infoLog)
-			println(NSString(bytes: infoLog, length: Int(infoLogLength), encoding: NSASCIIStringEncoding))
-			assert(false, "shader compilation failed")
+		var shaderSourceCString: CString? = (shaderSource as NSString).cStringUsingEncoding(NSUTF8StringEncoding)
+		if var s: CString = shaderSourceCString {
+			glShaderSource(shader, 1, &s, nil) // &shaderSourceCStringLength)
+			checkError()
+			glCompileShader(shader)
+			checkError()
+			
+			var value: GLint = 0
+			glGetShaderiv(shader, GLenum(GL_COMPILE_STATUS), &value)
+			if (value == GL_FALSE) {
+				glGetShaderiv(shader, GLenum(GL_INFO_LOG_LENGTH), &value)
+				var infoLog: GLchar[] = GLchar[](count: Int(value), repeatedValue: 0)
+				var infoLogLength: GLsizei = 0
+				glGetShaderInfoLog(shader, value, &infoLogLength, &infoLog)
+				println(NSString(bytes: infoLog, length: Int(infoLogLength), encoding: NSASCIIStringEncoding))
+				assert(false, "shader compilation failed")
+			}
 		}
 
 		return shader
@@ -192,7 +201,6 @@ class TriangleView: NSOpenGLView {
 		}
 	}
 }
-
 
 let frame = CGRect(x: 0, y: 0, width: 400, height: 300)
 let view = TriangleView(frame: frame)

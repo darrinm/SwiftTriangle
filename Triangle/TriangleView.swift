@@ -49,7 +49,7 @@ class TriangleView: NSOpenGLView {
 	}
 
 	func initCommon() {
-        openGLContext.makeCurrentContext()
+		openGLContext.makeCurrentContext()
 		checkError()
 
         var fragmentShaderSource = String.stringWithContentsOfFile(NSBundle.mainBundle().pathForResource("triangle120", ofType: "frag"), encoding: NSUTF8StringEncoding, error: nil)!
@@ -127,8 +127,6 @@ class TriangleView: NSOpenGLView {
 		openGLContext.makeCurrentContext()
 		checkError()
 
-		// TODO: addvertexbinding?
-		
 		glClearColor(0.0, 0.0, 0.5, 1.0)
 		checkError()
 		glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
